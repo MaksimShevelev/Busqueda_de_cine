@@ -4,7 +4,7 @@ document.getElementById('btnGet').addEventListener('click', () => {
 
 async function buscarPeliculas() {
     const query = document.getElementById('searchInput').value;
-    const url = `http://www.omdbapi.com/?s=${query}&apikey=1bcc8ed6`;
+    const url = `https://www.omdbapi.com/?s=${query}&apikey=1bcc8ed6`;
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -23,7 +23,7 @@ async function mostrarPeliculas(movies) {
     results.innerHTML = '';
 
     for (const movie of movies) {
-        const movieDetailUrl = `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=1bcc8ed6`;
+        const movieDetailUrl = `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=1bcc8ed6`;
         try {
             const movieResponse = await fetch(movieDetailUrl);
             const movieData = await movieResponse.json();
@@ -39,7 +39,7 @@ function mostrarPelicula(movie, container) {
     movieElement.classList.add('movie-card', 'col-lg-4', 'col-md-6', 'col-sm-12', 'mb-3');
     movieElement.innerHTML = `
         <div class="card h-100">
-            <img src="${movie.Poster !== 'No hay datos :(' ? movie.Poster : 'placeholder.jpg'}" class="card-img-top" alt="${movie.Title}">
+            <img src="${movie.Poster !== 'N/A' ? movie.Poster : 'placeholder.jpg'}" class="card-img-top" alt="${movie.Title}">
             <div class="card-body">
                 <h4 class="card-title">${movie.Title}</h4>
                 <h6 class="card-text"><strong>Año:</strong> ${movie.Year}</h6>
